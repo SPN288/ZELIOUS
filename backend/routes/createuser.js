@@ -7,8 +7,8 @@ router.post("/createuser", [
     // username must be an email
     check('email').isEmail(),
     // password must be at least 5 chars long
-    check('name').isLength({ min: 5 }),
-    check('password').isLength({ min: 5 })
+    check('name', "short username").isLength({ min: 5 }),
+    check('password', "incorrect password").isLength({ min: 5 })
 ], async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -21,7 +21,7 @@ router.post("/createuser", [
             password: req.body.password,
             email: req.body.email,
             location: req.body.location
-        })
+        }).then(res.json({sucess:true}))
         res.json({ sucess: true });
     } catch (error) {
         console.log(error);
