@@ -31,19 +31,19 @@ export default function Home() {
             <div className='container'>
             {foodCat !=[] ? foodCat.map(
                 (data)=>{
-                    return(<>
-                    <div key={data._id} className='fs-3'>
+                    return(<div className='row mb-3'>
+                    <div key={data._id} className='fs-3 m-3'>
                         {data.CategoryName}
                     </div>
                     <hr />
                     {foodItems!=[]?foodItems.filter((item)=>item.CategoryName===data.CategoryName).map(
                         filteritems=>{return(
-                            <div key={filteritems._id}>
-                                <Card/>
+                            <div key={filteritems._id}className='col-12 col-md-6 col-lg-3'>
+                                <Card foodName={filteritems.name} des={filteritems.description} options={filteritems.options} imgSrc={filteritems.img} />
                             </div>
                         )}
                     ):<div>No data in this category</div>}
-                    </>)
+                    </div>)
                 }
             ):""}
             </div>
