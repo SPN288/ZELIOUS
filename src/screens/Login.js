@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+
 
 
 
 export default function Login() {
+  const navigate = useNavigate();
     const[credentials,setcredentials]=useState({email:"",password:""})
 
     const handleSubmit=async(e)=>{
@@ -18,10 +20,14 @@ export default function Login() {
                                  password:credentials.password,
             })
         })
+        
         const json= await response.json();
         console.log(json);
         if(!json.success){
             alert("enter valid credentials");
+        }else{
+          localStorage.setItem("authToken",json.authToken);
+          navigate("/");
         }
     }
     const onChange=(event)=>{

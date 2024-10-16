@@ -1,38 +1,42 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/User')
-const { check, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
+const bcrypt =require("bcryptjs");
+const jwt= require("jsonwebtoken");
+const jwtSeceret="mynameisdragonwarrior";
 
 router.post("/createuser", [
-    // username must be an email
-    check('email').isEmail(),
-    // password must be at least 5 chars long
-    check('name', "short username").isLength({ min: 5 }),
-    check('password', "incorrect password").isLength({ min: 5 })],
+    
+    body('email').isEmail(),
+    body('name', 'short username').isLength({ min: 5 }),
+    body('password', 'incorrect password').isLength({ min: 5 })],
     async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
+        const salt=await bcrypt.genSalt(10);
+        const secPassword = await bcrypt.hash(req.body.password,salt);
 
         try {
             await User.create({
                 name: req.body.name,
-                password: req.body.password,
+                password: secPassword,
                 email: req.body.email,
                 location: req.body.location
-            }).then(res.json({ sucess: true }))
+            }).then(res.json({ success: true }))
             //res.json({ sucess: true });
         } catch (error) {
             console.log(error);
-            res.json({ sucess: false });
+            res.json({ success: false });
         }
     })
 router.post("/loginuser", [
     // username must be an email
-    check('email').isEmail(),
+    body('email').isEmail(),
     // password must be at least 5 chars long
-    check('password', "incorrect password").isLength({ min: 5 })],
+    body('password', 'incorrect password').isLength({ min: 5 })],
     async (req, res) => {
         const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -42,12 +46,19 @@ router.post("/loginuser", [
     try {
         let userdata = await User.findOne({ email });
         if (!userdata) { return res.status(400).json({ error: "try with correct email" }) }
-        if (req.body.password !== userdata.password) { return res.status(400).json({ error: "try with correct email" }) }
-        return res.json({ sucess: true });
+
+        const pwdcompare=await bcrypt.compare(req.body.password,userdata.password);
+        if ( !pwdcompare) { return res.status(400).json({ error: "try with correct email" }) }
+
+        const data={
+            user:{id:userdata.id}
+        }
+        const authToken=jwt.sign(data,jwtSeceret);
+        return res.json({ success: true ,authToken:authToken});
 
     } catch (error) {
         console.log(error);
-        res.json({ sucess: false });
+        res.json({ success: false });
     }
 })
 module.exports = router;

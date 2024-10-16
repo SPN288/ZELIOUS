@@ -9,11 +9,17 @@ const mongoDB = async () => {
     await mongoose.connect(process.env.mongo_url);
     console.log("Connected to MongoDB");
 
-    // const db = mongoose.connection.db;
-    // const collection = db.collection("food_items"); // Replace with your collection name
+    const db = mongoose.connection.db;
 
-    // const data = await collection.find({}).toArray();
-    // console.log(data);
+    const itemscollection = db.collection("food_items");
+    const itemdata = await itemscollection.find({}).toArray();
+    //console.log(data);
+    global.food_items=itemdata;
+    //console.log(global.food_items);
+
+    const categorycollection = db.collection("foodCategory");
+    const categorydata = await categorycollection.find({}).toArray();
+    global.food_category=categorydata;
   } catch (error) {
     console.error("Error connecting to MongoDB:", error);
   }
