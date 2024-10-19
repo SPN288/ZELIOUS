@@ -28,16 +28,13 @@ export default function Home() {
     }, [])
     return (
         <div>
-            <div><Navbar /></div>
-
-
 
             <div><div>
                 <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" style={{ "objectFit": "contain !important" }}>
                     <div className="carousel-inner " id='car'>
                         <div className='carousel-caption' style={{ "zIndex": "1" }}>
                             <div className="d-flex justify-content-center">
-                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e)=>{setSearch(e.target.value )}} />
+                                <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" value={search} onChange={(e) => { setSearch(e.target.value) }} />
                                 {/* <button className="btn btn-outline-success text-white" type="submit">Search</button> */}
                             </div>
                         </div>
@@ -73,7 +70,7 @@ export default function Home() {
                                 {data.CategoryName}
                             </div>
                             <hr />
-                            {foodItems != [] ? foodItems.filter((item) => (item.CategoryName === data.CategoryName)&&(item.name.toLowerCase().includes(search))).map(
+                            {foodItems != [] ? foodItems.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search))).map(
                                 filteritems => {
                                     return (
                                         <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>

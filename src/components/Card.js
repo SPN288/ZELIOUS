@@ -3,8 +3,9 @@ import React from 'react'
 export default function Card(props) {
     let options=props.options;
     let priceopt=Object.keys(options[0]);
+    const handleAddToCart=()=>{}
   return (
-    <div className="card mt-3  " style={{ "width": "18rem", "maxHeight": "360px" }}>
+    <div className="card  mt-3  " style={{ "width": "18rem", "maxHeight": "500px" }}>
                     <img style={{  "maxHeight": "200px",objectFit:"fill" }} src={props.imgSrc} className="card-img-top" alt="..." />
                     <div className="card-body">
                         <h5 className="card-title">{props.foodName}</h5>
@@ -27,6 +28,8 @@ export default function Card(props) {
                                 total price
                             </div>
                         </div>
+                        <hr />
+                        <button className='btn justify-center ms-2' onClick={handleAddToCart}>Add to cart</button>
                     </div>
                 </div>
   )

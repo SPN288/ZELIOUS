@@ -32,8 +32,8 @@ export default function Navbar() {
               </div>
               : <div className='d-flex'>
 
-                <div className="btn  mx-1 text-light bg-dark" onClick={handleLogout} >Mycart</div>
-                <div className="btn  mx-1 text-light bg-dark" >Logout</div>
+                <div className="btn  mx-1 text-light bg-dark" >My Cart</div>
+                <div className="btn  mx-1 text-light bg-dark" onClick={handleLogout} >Logout</div>
 
               </div>}
           </div>
