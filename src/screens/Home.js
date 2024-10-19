@@ -28,6 +28,7 @@ export default function Home() {
     }, [])
     return (
         <div>
+            <Navbar/>
 
             <div><div>
                 <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" style={{ "objectFit": "contain !important" }}>
@@ -74,7 +75,7 @@ export default function Home() {
                                 filteritems => {
                                     return (
                                         <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
-                                            <Card foodName={filteritems.name} des={filteritems.description} options={filteritems.options} imgSrc={filteritems.img} />
+                                            <Card food={filteritems}  options={filteritems.options}  />
                                         </div>
                                     )
                                 }
