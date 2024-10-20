@@ -1,19 +1,21 @@
 const express = require('express')
 const mongoDB = require('./db')
 //satya
-const app = express()
+const app = express();
+const cors = require('cors');
 
 const port =process.env.PORT || 5000;
 
+app.use(cors());
 mongoDB();
-app.use((req,res,next)=>{
-    res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin.X-requested-With,Content-Type,Accept"
-    );
-    next();
-})
+// app.use((req,res,next)=>{
+//     res.setHeader("Access-Control-Allow-Origin","http://localhost:3000");
+//     res.header(
+//         "Access-Control-Allow-Headers",
+//         "Origin.X-requested-With,Content-Type,Accept"
+//     );
+//     next();
+// })
 
 app.get('/', (req, res) => {
 
