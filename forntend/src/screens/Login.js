@@ -10,8 +10,8 @@ export default function Login() {
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        const response= await fetch("http://localhost:5000/api/loginuser"
-        //let response = await fetch("https://zelious.onrender.com/api/loginuser"
+        //const response= await fetch("http://localhost:5000/api/loginuser"
+        let response = await fetch("https://zelious-backend.onrender.com/api/loginuser"
         ,{
             method:'POST',
             headers:{

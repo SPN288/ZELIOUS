@@ -12,8 +12,8 @@ export default function Home() {
     const [foodCat, setfoodCat] = useState([]);
     const [foodItems, setfooditems] = useState([]);
     const loadData = async () => {
-        let response = await fetch("http://localhost:5000/api/foodData"
-        //let response = await fetch("https://zelious.onrender.com/api/foodData"
+        //let response = await fetch("http://localhost:5000/api/foodData"
+        let response = await fetch("https://zelious-backend.onrender.com/api/foodData"
               , {
             method: 'POST',
             headers: {

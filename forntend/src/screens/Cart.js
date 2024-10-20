@@ -19,8 +19,8 @@ export default function Cart() {
   const handleCheckOut = async () => {
     let userEmail = localStorage.getItem("userEmail");
 
-    let response = await fetch("http://localhost:5000/api/orderData"
-      //let response = await fetch("https://zelious.onrender.com/api/auth/orderData"
+    //let response = await fetch("http://localhost:5000/api/orderData"
+      let response = await fetch("https://zelious-backend.onrender.com/api/orderData"
       , {
 
         method: 'POST',
