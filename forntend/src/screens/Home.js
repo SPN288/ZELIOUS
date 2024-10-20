@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -6,12 +7,13 @@ import Card from '../components/Card'
 
 export default function Home() {
 
+
     const [search, setSearch] = useState([]);
     const [foodCat, setfoodCat] = useState([]);
     const [foodItems, setfooditems] = useState([]);
     const loadData = async () => {
-        //let response = await fetch("http://localhost:5000/api/foodData"
-        let response = await fetch("https://zelious.onrender.com/api/foodData"
+        let response = await fetch("http://localhost:5000/api/foodData"
+        //let response = await fetch("https://zelious.onrender.com/api/foodData"
               , {
             method: 'POST',
             headers: {

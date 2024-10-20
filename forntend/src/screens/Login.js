@@ -10,8 +10,9 @@ export default function Login() {
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        //const response= await fetch("http://localhost:5000/api/loginuser"
-        let response = await fetch("https://zelious.onrender.com/api/loginuser",{
+        const response= await fetch("http://localhost:5000/api/loginuser"
+        //let response = await fetch("https://zelious.onrender.com/api/loginuser"
+        ,{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'
@@ -27,6 +28,7 @@ export default function Login() {
         if(!json.success){
             alert("enter valid credentials");
         }else{
+            localStorage.setItem('userEmail', credentials.email)
           localStorage.setItem("authToken",json.authToken);
           navigate("/");
         }
