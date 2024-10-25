@@ -48,10 +48,10 @@ export default function Home() {
                         <div className="carousel-item active">
                             <img src="https://images.pexels.com/photos/699544/pexels-photo-699544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
-                        <div className="carousel-item">
+                        <div className="carousel-item active">
                             <img src="https://images.pexels.com/photos/941869/pexels-photo-941869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
-                        <div className="carousel-item">
+                        <div className="carousel-item active">
                             <img src="https://images.pexels.com/photos/12061487/pexels-photo-12061487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
                     </div>
