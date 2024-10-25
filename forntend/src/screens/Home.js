@@ -5,6 +5,7 @@ import Footer from '../components/Footer'
 import Card from '../components/Card'
 //import Carousal from '../components/Carousal'
 
+
 export default function Home() {
 
 
@@ -14,14 +15,14 @@ export default function Home() {
     const loadData = async () => {
         //let response = await fetch("http://localhost:5000/api/foodData"
         let response = await fetch("https://zelious-backend.onrender.com/api/foodData"
-              , {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            
+            , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
 
-        })
+
+            })
         response = await response.json();
         //console.log(response[0],response[1]);
         setfooditems(response[0]);
@@ -33,7 +34,7 @@ export default function Home() {
     }, [])
     return (
         <div>
-            <Navbar/>
+            <Navbar />
 
             <div><div>
                 <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel" style={{ "objectFit": "contain !important" }}>
@@ -45,13 +46,13 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="carousel-item active">
-                            <img src="https://images.pexels.com/photos/718742/pexels-photo-718742.jpeg?auto=compress&cs=tinysrgb&w=600" className="d-block w-100" alt="..." />
+                            <img src="https://images.pexels.com/photos/699544/pexels-photo-699544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
                         <div className="carousel-item">
-                            <img src="https://images.pexels.com/photos/262959/pexels-photo-262959.jpeg?auto=compress&cs=tinysrgb&w=600" className="d-block w-100" alt="..." />
+                            <img src="https://images.pexels.com/photos/941869/pexels-photo-941869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
                         <div className="carousel-item">
-                            <img src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=600" className="d-block w-100" alt="..." />
+                            <img src="https://images.pexels.com/photos/12061487/pexels-photo-12061487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" className="d-block w-100" alt="..." />
                         </div>
                     </div>
                     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -71,20 +72,23 @@ export default function Home() {
             <div className='container'>
                 {foodCat != [] ? foodCat.map(
                     (data) => {
-                        return (<div className='row mb-3'>
+                        return (<div>
                             <div key={data._id} className='fs-3 m-3'>
                                 {data.CategoryName}
                             </div>
                             <hr />
-                            {foodItems != [] ? foodItems.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search))).map(
-                                filteritems => {
-                                    return (
-                                        <div key={filteritems._id} className='col-12 col-md-6 col-lg-3'>
-                                            <Card food={filteritems}  options={filteritems.options}  />
-                                        </div>
-                                    )
-                                }
-                            ) : <div>No data in this category</div>}
+                            <div style={{ "display": "flex", "flex-wrap": "wrap", "overflow": "hidden", "justify-content": "space-around" }}>
+
+                                {foodItems != [] ? foodItems.filter((item) => (item.CategoryName === data.CategoryName) && (item.name.toLowerCase().includes(search))).map(
+                                    filteritems => {
+                                        return (
+                                            <div key={filteritems._id} style={{ "margin": "5px", "padding": "10px", "width": "350px", "text-align": "center" }}>
+                                                <Card food={filteritems} options={filteritems.options} />
+                                            </div>
+                                        )
+                                    }
+                                ) : <div>No data in this category</div>}
+                            </div>
                         </div>)
                     }
                 ) : ""}
